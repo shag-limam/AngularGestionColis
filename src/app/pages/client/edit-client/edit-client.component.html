@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Modifier le client</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="fullName">Nom complet</label>
+      <input type="text" id="fullName" formControlName="fullName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Adresse</label>
+      <input type="text" id="address" formControlName="address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Numéro de téléphone</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="photo">Photo</label>
+      <input type="file" id="photo" (change)="onFileChange($event)" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Mettre à jour</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/client/list']">Annuler</button>
+  </form>
+</div>

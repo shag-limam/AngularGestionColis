@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Client Management</h1>
+
+  <!-- Bouton pour créer un nouveau client -->
+  <a routerLink="/client/create" class="btn btn-success">Créer un nouveau client</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom complet</th>
+        <th>Email</th>
+        <th>Adresse</th>
+        <th>Image</th>
+        <th>Statut</th> <!-- Colonne Statut -->
+        <th width="250px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.fullName }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.address }}</td>
+        <td>
+          <img *ngIf="client.imageData" [src]="'data:' + client.imageData.type + ';base64,' + client.imageData.imageData" 
+               alt="Client Image" width="50" height="50" />
+        </td>
+        <td>
+          <!-- Toggle switch pour activer/désactiver -->
+          <label class="switch">
+            <input type="checkbox" [checked]="client.active" (change)="toggleClientStatus(client)">
+            <span class="slider round"></span>
+          </label>
+        </td>
+        <td>
+          <a [routerLink]="['/client', client.id, 'view']" class="btn btn-info">
+            <span class="material-icons">visibility</span>
+          </a>
+          <a [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+            <span class="material-icons">edit</span>
+          </a>
+          <button type="button" (click)="confirmDelete(client.id)" class="btn btn-danger">
+            <span class="material-icons">delete</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

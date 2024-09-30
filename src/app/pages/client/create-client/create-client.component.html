@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>Créer un nouveau client</h1>
+
+  <!-- Message de succès ou d'erreur -->
+  <div *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Client créé avec succès !', 'alert-danger': message !== 'Client créé avec succès !'}">
+    {{ message }}
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" enctype="multipart/form-data">
+
+    <!-- Nom complet -->
+    <div class="form-group mb-4">
+      <label for="fullName">Nom complet</label>
+      <input type="text" id="fullName" formControlName="fullName" class="form-control" placeholder="Entrez le nom complet"/>
+      <div *ngIf="f['fullName'].invalid && f['fullName'].touched" class="text-danger">
+        Le nom complet est requis.
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-4">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" placeholder="Entrez l'adresse email"/>
+      <div *ngIf="f['email'].invalid && f['email'].touched" class="text-danger">
+        Un email valide est requis.
+      </div>
+    </div>
+
+    <!-- Adresse -->
+    <div class="form-group mb-4">
+      <label for="address">Adresse</label>
+      <input type="text" id="address" formControlName="address" class="form-control" placeholder="Entrez l'adresse"/>
+      <div *ngIf="f['address'].invalid && f['address'].touched" class="text-danger">
+        L'adresse est requise.
+      </div>
+    </div>
+
+    <!-- Numéro de téléphone -->
+    <div class="form-group mb-4">
+      <label for="phoneNumber">Numéro de téléphone</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Entrez le numéro de téléphone"/>
+      <div *ngIf="f['phoneNumber'].invalid && f['phoneNumber'].touched" class="text-danger">
+        Le numéro de téléphone est requis.
+      </div>
+    </div>
+
+    <!-- Mot de passe -->
+    <div class="form-group mb-4">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="Entrez le mot de passe"/>
+      <div *ngIf="f['password'].invalid && f['password'].touched" class="text-danger">
+        Le mot de passe est requis.
+      </div>
+    </div>
+
+    <!-- Téléchargement d'image -->
+    <div class="form-group mb-4">
+      <label for="photo">Télécharger une image</label>
+      <input type="file" id="photo" (change)="onFileSelected($event)" class="form-control" />
+    </div>
+
+    <!-- Prévisualisation de l'image -->
+    <div *ngIf="imagePreview" class="image-preview mb-4">
+      <h5>Prévisualisation de l'image :</h5>
+      <img [src]="imagePreview" alt="Prévisualisation de l'image" class="img-thumbnail" width="200" height="200"/>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Créer le client</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+    </div>
+  </form>
+</div>

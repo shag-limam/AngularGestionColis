@@ -1,11 +1,17 @@
-// angular import
+// Updated Angular Import Section
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Project import
+// Project Import
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
-import { ListComponent } from './pages/clients/list/list.component';
+
+// Client Components (ensure paths are correct)
+import { CreateClientComponent } from './pages/client/create-client/create-client.component'; // Adjust path as needed
+import { ViewClientComponent } from './pages/client/view-client/view-client.component';       // Adjust path as needed
+import { EditClientComponent } from './pages/client/edit-client/edit-client.component';       // Adjust path as needed
+import { ListClientComponent } from './pages/client/list-client/list-client.component';       // Adjust path as needed
+
 const routes: Routes = [
   {
     path: '',
@@ -34,7 +40,27 @@ const routes: Routes = [
       },
       {
         path: 'clients',
-        loadComponent: () => import('./pages/clients/list/list.component').then(m => m.ListComponent) // Correct path and component
+        children: [
+          {
+            path: '',
+            component: ListClientComponent  // List all clients
+          },
+          {
+            path: 'create',
+            component: CreateClientComponent // Create new client
+          },
+          {
+            path: ':clientId/view',
+            component: ViewClientComponent // View a specific client
+          },
+          {
+            path: ':clientId/edit',
+            component: EditClientComponent // Edit a specific client
+          }
+        ]
+      },
+      {
+        path: '', redirectTo: 'employees', pathMatch: 'full'
       }
     ]
   },
@@ -51,17 +77,7 @@ const routes: Routes = [
         loadComponent: () => import('./pages/authentication/register/register.component')
       }
     ]
-  },
-  // {
-  //   path: '',
-  //   component: ListComponent,
-  //   children: [
-  //     {
-  //       path: '/clients',
-  //       loadComponent: () => import('./pages/clients/list/list.component')
-  //     },
-  //   ]
-  // }
+  }
 ];
 
 @NgModule({

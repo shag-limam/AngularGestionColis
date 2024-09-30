@@ -1,26 +1,42 @@
-// src/app/models/client.model.ts
-export interface ImageData {
-  id: number;
-  name: string;
-  type: string;
-  imageData: string;
+// // src/app/models/client.model.ts
+// export interface ImageData {
+//   id: number;
+//   name: string;
+//   type: string;
+//   imageData: string;
+// }
+// // Adapted to ApiResponse
+// export interface ApiResponse<T> {
+//   message?: string;
+//   data: T;
+// }
+// export interface Client {
+//   id?: number;
+//   fullName: string;
+//   email: string;
+//   phoneNumber: string;
+//   address: string;
+//   imageData?: any; // Or your specific type for image data
+//   active?: boolean;
+//   createdAt?: Date;
+//   updatedAt?: Date;
+//   enabled?: boolean;
+//   password?: string; // Add this line
+// }
+
+export interface ApiResponse<T> {
+  message?: string;
+  data: T;
 }
 
 export interface Client {
-  id: number;
+  id?: number;
   fullName: string;
   email: string;
-  active: boolean;
-  password?: string; // Peut-être non utilisé côté client
-  imageData?: ImageData; // Optionnel si l'image n'est pas toujours présente
-  createdAt: string;
-  updatedAt: string;
-  address: string;
   phoneNumber: string;
-  enabled: boolean;
-  authorities: any[]; // Définissez un type plus précis si vous avez une structure pour les autorités
-  username: string;
-  accountNonLocked: boolean;
-  accountNonExpired: boolean;
-  credentialsNonExpired: boolean;
+  address: string;
+  password?: string;
+  active?: boolean;
+  imageData?: any;
 }
+

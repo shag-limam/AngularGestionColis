@@ -1,0 +1,149 @@
+/* Style général du tableau */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Icônes dans les boutons */
+.btn {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+}
+
+/* Icônes avec fond transparent */
+.material-icons {
+  font-size: 24px;
+  color: #333;
+  vertical-align: middle;
+}
+
+/* Bouton pour voir un client */
+.btn-info .material-icons {
+  color: #17a2b8;
+}
+
+/* Bouton pour modifier un client */
+.btn-primary .material-icons {
+  color: #007bff;
+}
+
+/* Bouton pour supprimer un client */
+.btn-danger .material-icons {
+  color: #dc3545;
+}
+
+/* Toggle switch stylisé */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #28a745;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Ajouter un léger padding autour du conteneur */
+.container {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+/* Style du bouton "Créer un nouveau client" */
+.btn-success {
+  background-color: #28a745;  /* Couleur verte pour indiquer une action positive */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #218838;  /* Légère variation de la couleur au survol */
+  color: white;
+}
+
+/* Optionnel: on peut ajouter un espace supplémentaire autour du bouton */
+.container a.btn-success {
+  margin-bottom: 20px;
+  display: inline-block;
+}

@@ -21,6 +21,8 @@
     "@angular/compiler": "^18.0.5",
     "@angular/core": "^18.0.5",
     "@angular/forms": "^18.0.5",
+    "@angular/localize": "^18.0.5",
+    "@angular/material": "^18.2.6",
     "@angular/platform-browser": "^18.0.5",
     "@angular/platform-browser-dynamic": "^18.0.5",
     "@angular/router": "^18.0.5",
@@ -29,8 +31,12 @@
     "@popperjs/core": "^2.11.8",
     "apexcharts": "^3.49.2",
     "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
     "ng-apexcharts": "^1.11.0",
     "ngx-scrollbar": "^15.0.1",
+    "ngx-toastr": "^19.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.18.8",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.7"
@@ -57,5 +63,8 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.3.2",
     "typescript": "5.4"
-  }
+  },
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/codedthemes/mantis-free-angular-admin-template/blob/main/LICENSE) [![GitHub package version](https://img.shields.io/github/package-json/v/codedthemes/mantis-free-angular-admin-template)](https://github.com/codedthemes/mantis-free-angular-admin-template/)",
+  "main": "karma.conf.js",
+  "keywords": []
 }
