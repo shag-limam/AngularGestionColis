@@ -91,7 +91,7 @@ export class EditClientComponent implements OnInit {
       this.clientService.updateClient(this.clientId, formData).subscribe(
         () => {
           // Navigate to the client list page on successful update
-          this.router.navigate(['/client/list']);
+          this.router.navigate(['/clients']);
         },
         (error: any) => {
           // Handle error response from the API

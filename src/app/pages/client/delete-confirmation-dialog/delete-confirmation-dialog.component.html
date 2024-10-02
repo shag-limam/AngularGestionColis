@@ -1,1 +1,8 @@
-<p>delete-confirmation-dialog works!</p>
+<div class="dialog-container">
+  <h3 class="dialog-title">Confirmer la suppression</h3>
+  <p class="dialog-content">Êtes-vous sûr de vouloir supprimer ce client ? Cette action est irréversible.</p>
+  <div class="dialog-actions">
+    <button class="btn btn-cancel" (click)="cancel()">Annuler</button>
+    <button class="btn btn-confirm" (click)="confirmDelete()">Supprimer</button>
+  </div>
+</div>

@@ -73,7 +73,7 @@ export class CreateClientComponent {
     this.clientService.createClient(clientData).subscribe(
       (res: any) => {
         this.message = 'Client créé avec succès !';
-        this.router.navigateByUrl('client/list');
+        this.router.navigateByUrl('clients');
       },
       (error) => {
         this.message = 'Erreur lors de la création du client. Veuillez réessayer.';
@@ -82,7 +82,7 @@ export class CreateClientComponent {
   }
 
   cancel(): void {
-    this.router.navigate(['/client/list']); // Rediriger vers la liste des clients
+    this.router.navigate(['/clients']); // Rediriger vers la liste des clients
   }
   
 }

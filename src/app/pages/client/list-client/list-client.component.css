@@ -147,3 +147,17 @@ h1 {
   margin-bottom: 20px;
   display: inline-block;
 }
+
+
+.cdk-overlay-pane {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  margin: auto; /* Pour s'assurer qu'il est centré automatiquement */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Pour améliorer l'apparence */
+}
+

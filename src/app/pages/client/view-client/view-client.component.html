@@ -1,1 +1,23 @@
-<p>view-client works!</p>
+<div class="container" *ngIf="!isLoading; else loading">
+    <h1>Détails du client</h1>
+    <div *ngIf="client">
+      <p><strong>ID :</strong> {{ client.id }}</p>
+      <p><strong>Nom complet :</strong> {{ client.fullName }}</p>
+      <p><strong>Email :</strong> {{ client.email }}</p>
+      <p><strong>Téléphone :</strong> {{ client.phoneNumber }}</p>
+      <p><strong>Adresse :</strong> {{ client.address }}</p>
+      <p><strong>Statut :</strong> {{ client.active ? 'Actif' : 'Inactif' }}</p>
+      <div *ngIf="client.imageData">
+        <p><strong>Image :</strong></p>
+        <img [src]="'data:' + client.imageData.type + ';base64,' + client.imageData.imageData" alt="Image du client" width="150">
+      </div>
+      <a routerLink="/clients" class="btn btn-secondary">Retour à la liste des clients</a>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <div class="loading-container">
+      <p>Chargement des informations du client...</p>
+    </div>
+  </ng-template>
+  

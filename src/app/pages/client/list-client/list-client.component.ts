@@ -44,9 +44,12 @@ export class ListClientComponent {
 
   confirmDelete(clientId: number): void {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      width: '400px',
-      position: { top: '10%' },
-      panelClass: 'custom-dialog-container'
+      width: '300px',  // Largeur fixe réduite
+      height: '150px',  // Ajuste la hauteur en fonction du contenu
+      maxWidth: '90vw',  // Garde une largeur adaptée pour les petits écrans
+      disableClose: true,  // Empêche la fermeture sur un clic extérieur
+      autoFocus: true,
+      panelClass: 'custom-dialog-container'  // Classe personnalisée pour ajouter des styles spécifiques
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -55,6 +58,9 @@ export class ListClientComponent {
       }
     });
   }
+  
+  
+  
 
   deleteClient(id: number): void {
     this.clientService.deleteClient(id).subscribe(
@@ -80,4 +86,6 @@ export class ListClientComponent {
       }
     );
   }
+
+  
 }

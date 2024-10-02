@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password" class="form-control" />
+      <input type="password" id="password" formControlName="" class="form-control" />
     </div>
 
     <div class="form-group">
@@ -33,6 +33,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Mettre à jour</button>
-    <button type="button" class="btn btn-secondary" [routerLink]="['/client/list']">Annuler</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/clients']">Annuler</button>
   </form>
 </div>

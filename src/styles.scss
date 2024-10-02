@@ -6,6 +6,49 @@ Support: support@phoenixcoded.net
 File: style.css
 =========================================================================
 =================================================================================== */
+/* Centrage du conteneur de la boîte de dialogue */
+// .cdk-overlay-pane {
+//   position: fixed !important;  /* Fixe l'overlay au centre de l'écran */
+//   top: 50% !important;
+//   left: 50% !important;
+//   transform: translate(-50%, -50%) !important;  /* Transforme l'origine pour garantir un centrage parfait */
+//   z-index: 1050 !important;  /* Assure que le dialogue soit au-dessus des autres éléments */
+//   display: block !important;  /* Affiche toujours le conteneur en mode bloc */
+// }
+
+
+// /* Garantir que la boîte de dialogue prend la bonne taille et apparence */
+// .delete-dialog-container .mat-dialog-container {
+//   width: 300px !important;  /* Assure une largeur compacte avec priorité */
+//   max-width: 90vw !important;  /* Largeur maximale sur les petits écrans */
+//   padding: 20px !important;  /* Espacement intérieur */
+//   border-radius: 8px !important;  /* Coins arrondis */
+//   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;  /* Ombre douce */
+//   text-align: center !important;  /* Centre tout le texte */
+//   overflow: hidden !important;  /* Empêche les débordements */
+//   background-color: #fff !important;  /* Assure que le fond est blanc */
+// }
+
+/* Garantir le centrage de la boîte de dialogue et la taille */
+.cdk-overlay-pane {
+  position: fixed !important;  /* Centrer l'overlay */
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;  /* Centre précisément la boîte de dialogue */
+  z-index: 1050 !important;  /* Assure une superposition au-dessus des autres éléments */
+}
+
+/* Assure que le conteneur de la boîte de dialogue est stylisé de manière uniforme */
+.delete-dialog-container .mat-dialog-container {
+  width: 300px !important;  /* Réduit la largeur de la boîte de dialogue */
+  max-width: 90vw !important;  /* Assure une adaptation sur les petits écrans */
+  padding: 20px !important;  /* Ajoute un espace intérieur */
+  border-radius: 8px !important;  /* Coins arrondis */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;  /* Ombre douce pour contraste */
+  text-align: center !important;  /* Centre le texte du contenu */
+  background-color: #fff !important;  /* Assure que le fond reste blanc */
+}
+
 
 // main framework
 @import 'node_modules/bootstrap/scss/functions';

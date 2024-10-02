@@ -2,7 +2,7 @@
   <h1>Client Management</h1>
 
   <!-- Bouton pour créer un nouveau client -->
-  <a routerLink="/client/create" class="btn btn-success">Créer un nouveau client</a>
+  <a routerLink="/clients/create" class="btn btn-success">Créer un nouveau client</a>
 
   <table class="table table-striped">
     <thead>
@@ -34,10 +34,10 @@
           </label>
         </td>
         <td>
-          <a [routerLink]="['/client', client.id, 'view']" class="btn btn-info">
+          <a [routerLink]="['/clients', client.id, 'view']" class="btn btn-info">
             <span class="material-icons">visibility</span>
           </a>
-          <a [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+          <a [routerLink]="['/clients', client.id, 'edit']" class="btn btn-primary">
             <span class="material-icons">edit</span>
           </a>
           <button type="button" (click)="confirmDelete(client.id)" class="btn btn-danger">
