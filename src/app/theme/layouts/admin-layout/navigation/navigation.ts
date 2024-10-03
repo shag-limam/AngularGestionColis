@@ -18,6 +18,7 @@ export interface NavigationItem {
   path?: string;
 }
 
+
 export const NavigationItems: NavigationItem[] = [
   {
     id: 'dashboard',
@@ -52,7 +53,23 @@ export const NavigationItems: NavigationItem[] = [
         'breadcrumbs': false
       }
     ]
-  },  
+  },{
+    id: 'livreurs',
+    title: 'Livreurs',
+    type: 'group',
+    icon: 'icon-delivery',  // Remplace par l'icône appropriée pour les livreurs
+    children: [
+      {
+        id: 'list-livreurs',
+        title: 'Livreurs',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/livreurs',
+        icon: 'user',  // Remplace par l'icône appropriée (par exemple, un camion)
+        breadcrumbs: false
+      }
+    ]
+  },
   {
     id: 'authentication',
     title: 'Authentication',

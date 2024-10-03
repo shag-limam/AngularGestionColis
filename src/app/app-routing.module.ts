@@ -12,6 +12,13 @@ import { ViewClientComponent } from './pages/client/view-client/view-client.comp
 import { EditClientComponent } from './pages/client/edit-client/edit-client.component';       // Adjust path as needed
 import { ListClientComponent } from './pages/client/list-client/list-client.component';       // Adjust path as needed
 
+
+// Livreur Components (ensure paths are correct)
+import { ListLivreurComponent } from './pages/livreur/list-livreur/list-livreur.component';      // Liste des livreurs
+import { ShowLivreurComponent } from './pages/livreur/show-livreur/show-livreur.component';      // Affichage d'un livreur
+import { LivreurFormDialogComponent } from './pages/livreur/livreur-form-dialog/livreur-form-dialog.component'; // Formulaire de livreur
+
+
 const routes: Routes = [
   {
     path: '',
@@ -60,6 +67,27 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'livreurs',
+        children: [
+          {
+            path: '',
+            component: ListLivreurComponent  // Liste tous les livreurs
+          },
+          {
+            path: 'create',
+            component: LivreurFormDialogComponent // Crée un nouveau livreur
+          },
+          {
+            path: ':livreurId/view',
+            component: ShowLivreurComponent // Affiche un livreur spécifique
+          },
+          {
+            path: ':livreurId/edit',
+            component: LivreurFormDialogComponent // Met à jour un livreur spécifique
+          }
+        ]
+      },
+      {
         path: '', redirectTo: 'employees', pathMatch: 'full'
       }
     ]
@@ -79,6 +107,7 @@ const routes: Routes = [
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,24 @@
+<div class="container" *ngIf="!isLoading; else loading">
+  <h1>Détails du Livreur</h1>
+  <div *ngIf="livreur">
+    <p><strong>ID :</strong> {{ livreur.id }}</p>
+    <p><strong>Nom complet :</strong> {{ livreur.fullName }}</p>
+    <p><strong>Email :</strong> {{ livreur.email }}</p>
+    <p><strong>Numéro de licence :</strong> {{ livreur.licence }}</p>
+    <p><strong>Téléphone :</strong> {{ livreur.phoneNumber }}</p>
+    <p><strong>Adresse :</strong> {{ livreur.address }}</p>
+    <p><strong>Statut :</strong> {{ livreur.active ? 'Actif' : 'Inactif' }}</p>
+    <div *ngIf="livreur.imageData">
+      <p><strong>Image :</strong></p>
+      <img [src]="'data:' + livreur.imageData.type + ';base64,' + livreur.imageData.imageData" alt="Image du Livreur" width="150">
+    </div>
+    <!-- Bouton pour Retourner à la Liste des Livreurs -->
+    <button (click)="goToList()" class="btn btn-secondary">Retour à la liste des livreurs</button>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading-container">
+    <p>Chargement des informations du livreur...</p>
+  </div>
+</ng-template>

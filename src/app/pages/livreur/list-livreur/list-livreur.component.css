@@ -56,12 +56,13 @@
 }
 
 input:checked + .slider {
-  background-color: #28a745; /* Vert lorsque le client est actif */
+  background-color: #28a745; /* Vert lorsque le livreur est actif */
 }
 
 input:checked + .slider:before {
   transform: translateX(20px);
 }
+
 
 /* Floating Action Button (FAB) */
 .fab {

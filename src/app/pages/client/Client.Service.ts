@@ -35,7 +35,7 @@ export class ClientService {
 
   // Méthode pour récupérer un client par ID
   getClientById(clientId: number): Observable<Client> {
-    return this.httpClient.get<Client>(`${this.apiURL}/${clientId}`)
+    return this.httpClient.get<Client>(`${this.apiURL}/listC/${clientId}`)
       .pipe(catchError(this.errorHandler));
   }
   

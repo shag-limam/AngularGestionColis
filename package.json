@@ -33,6 +33,7 @@
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
     "ng-apexcharts": "^1.11.0",
+    "ngx-intl-tel-input": "^3.2.0",
     "ngx-scrollbar": "^15.0.1",
     "ngx-toastr": "^19.0.0",
     "primeicons": "^7.0.0",
