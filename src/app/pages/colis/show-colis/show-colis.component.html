@@ -1,0 +1,30 @@
+<div class="container" *ngIf="!isLoading; else loading">
+    <h1>Détails du Colis</h1>
+    <div *ngIf="colis">
+      <p><strong>ID :</strong> {{ colis.id }}</p>
+      <p><strong>Description :</strong> {{ colis.description }}</p>
+      <p><strong>Poids :</strong> {{ colis.poids }} kg</p>
+      <p><strong>Adresse de l'Expéditeur :</strong> {{ colis.adresseExpediteur }}</p>
+      <p><strong>Adresse du Destinataire :</strong> {{ colis.adresseDestinataire }}</p>
+      <p><strong>Date d'Expédition :</strong> {{ colis.dateExpedition | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Date de Livraison Prévue :</strong> {{ colis.dateLivraisonPrevue | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Référence de Suivi :</strong> {{ colis.referenceSuivi }}</p>
+      <div *ngIf="colis.imageData">
+        <p><strong>Image :</strong></p>
+        <img [src]="'data:' + colis.imageData.type + ';base64,' + colis.imageData.imageData" alt="Image du Colis" width="150">
+      </div>
+      <div *ngIf="client">
+        <p><strong>Client :</strong> {{ client.fullName }}</p>
+        <p><strong>Email du Client :</strong> {{ client.email }}</p>
+      </div>
+      <!-- Bouton pour Retourner à la Liste des Colis -->
+      <button (click)="goToList()" class="btn btn-secondary">Retour à la liste des colis</button>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <div class="loading-container">
+      <p>Chargement des informations du colis...</p>
+    </div>
+  </ng-template>
+  

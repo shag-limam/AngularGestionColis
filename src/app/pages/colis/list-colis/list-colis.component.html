@@ -1,0 +1,51 @@
+<div class="container mt-4">
+    <h1>Liste des Colis</h1>
+  
+    <!-- Vérification si des colis sont présents -->
+    <div *ngIf="colis.length > 0; else noData">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Poids (kg)</th>
+            <th>Adresse Expéditeur</th>
+            <th>Adresse Destinataire</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let colisItem of colis">
+            <td>{{ colisItem.id }}</td>
+            <td>{{ colisItem.description }}</td>
+            <td>{{ colisItem.poids }}</td>
+            <td>{{ colisItem.adresseExpediteur }}</td>
+            <td>{{ colisItem.adresseDestinataire }}</td>
+            <td>
+              <!-- Icônes pour les Actions -->
+              <button (click)="openColisForm(colisItem)" class="action-button" title="Modifier">
+                <span class="material-icons">edit</span>
+              </button>
+              <button (click)="confirmDelete(colisItem.id)" class="action-button" title="Supprimer">
+                <span class="material-icons">delete</span>
+              </button>
+              <a [routerLink]="['/colis', colisItem.id, 'view']" class="action-button" title="Détails">
+                <span class="material-icons">visibility</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Message en cas de données absentes -->
+    <ng-template #noData>
+      <p>Aucun colis trouvé.</p>
+    </ng-template>
+  
+    <!-- Bouton pour Ajouter un Colis -->
+    <button class="fab" (click)="openColisForm()">
+      <span class="material-icons">add</span>
+    </button>
+  </div>
+  

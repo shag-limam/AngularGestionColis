@@ -38,26 +38,27 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
-    'id': 'clients',
-    'title': 'Clients',
-    'type': 'group',
-    'icon': 'icon-user',  // Remplacez par l'icône appropriée pour "clients"
-    'children': [
+    id: 'clients',
+    title: 'Clients',
+    type: 'group',
+    icon: 'icon-user',
+    children: [
       {
-        'id': 'clients',
-        'title': 'Clients',//<i class="bi bi-people"></i>
-        'type': 'item',
-        'classes': 'nav-item',
-        'url': '/clients',  // Changez l'URL pour correspondre à "clients"
-        'icon': 'user',  // Remplacez par l'icône appropriée pour "clients"
-        'breadcrumbs': false
+        id: 'clients',
+        title: 'Clients',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/clients',
+        icon: 'user',
+        breadcrumbs: false
       }
     ]
-  },{
+  },
+  {
     id: 'livreurs',
     title: 'Livreurs',
     type: 'group',
-    icon: 'icon-delivery',  // Remplace par l'icône appropriée pour les livreurs
+    icon: 'icon-delivery',
     children: [
       {
         id: 'list-livreurs',
@@ -65,7 +66,24 @@ export const NavigationItems: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         url: '/livreurs',
-        icon: 'user',  // Remplace par l'icône appropriée (par exemple, un camion)
+        icon: 'user',
+        breadcrumbs: false
+      }
+    ]
+  },
+  {
+    id: 'colis',
+    title: 'Colis',
+    type: 'group',
+    icon: 'icon-package',  // Remplacez par l'icône appropriée pour "Colis"
+    children: [
+      {
+        id: 'list-colis',
+        title: 'Colis',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/colis',
+        icon: 'package',  // Remplacez par l'icône appropriée
         breadcrumbs: false
       }
     ]
@@ -132,7 +150,6 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
-
   {
     id: 'other',
     title: 'Other',
