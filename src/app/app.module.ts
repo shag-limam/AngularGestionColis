@@ -71,6 +71,9 @@ import { SharedModule } from './theme/shared/shared.module';
 import { ToastModule } from 'primeng/toast'; 
 import { ToolbarModule } from 'primeng/toolbar'; 
 import { ToastrModule } from 'ngx-toastr';
+//src\app\services\auth.interceptor.ts
+import { AuthInterceptor } from '../app/services/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -92,7 +95,9 @@ import { ToastrModule } from 'ngx-toastr';
     ToolbarModule,
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

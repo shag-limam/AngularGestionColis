@@ -1,0 +1,89 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Modifier Livraison' : 'Ajouter Livraison' }}</h2>
+
+<div style="max-height: 400px; overflow-y: auto;">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div mat-dialog-content>
+
+      <!-- Sélection du Livreur -->
+      <div class="form-group">
+        <label for="livreurId">Livreur</label>
+        <select id="livreurId" formControlName="livreurId" class="form-control" required>
+          <option value="" disabled>Sélectionner un livreur</option>
+          <option *ngFor="let livreur of livreurs" [value]="livreur.id">{{ livreur.fullName }}</option>
+        </select>
+      </div>
+
+      <!-- Sélection du Colis -->
+      <div class="form-group">
+        <label for="colisId">Colis</label>
+        <select id="colisId" formControlName="colisId" class="form-control" required>
+          <option value="" disabled>Sélectionner un colis</option>
+          <option *ngFor="let colis of colisDisponibles" [value]="colis.id">{{ colis.referenceSuivi }}</option>
+        </select>
+      </div>
+
+      <!-- Conteneur pour les icônes place et flag reliées par une ligne -->
+      <div class="route-container">
+        <!-- Colonne des icônes -->
+        <div class="icon-column">
+          <mat-icon class="icon place-icon">place</mat-icon>
+          <div class="vertical-line"></div>
+          <mat-icon class="icon flag-icon">flag</mat-icon>
+        </div>
+
+        <!-- Colonne pour les champs de formulaire -->
+        <div class="form-column">
+          <!-- Point de départ avec une icône cliquable -->
+          <div class="form-group input-icon-group">
+            <input id="departurePoint" formControlName="departurePoint" class="form-control" type="text" readonly placeholder="Point de départ">
+            <button mat-icon-button class="icon-button" (click)="openMap('departure', $event)">
+              <mat-icon>place</mat-icon>
+            </button>
+          </div>
+
+          <!-- Point d'arrivée avec une icône cliquable -->
+          <div class="form-group input-icon-group">
+            <input id="arrivalPoint" formControlName="arrivalPoint" class="form-control" type="text" readonly placeholder="Point d'arrivée">
+            <button mat-icon-button class="icon-button" (click)="openMap('arrival', $event)">
+              <mat-icon>flag</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Points de Passage (Waypoints) -->
+      <div class="form-group">
+        <label for="waypoints">Points de Passage (Waypoints)</label>
+        <input id="waypoints" formControlName="waypoints" class="form-control" type="text" placeholder="Séparer les waypoints par des virgules">
+      </div>
+
+      <!-- Date d'Expédition -->
+      <div class="form-group">
+        <label for="dateExpedition">Date d'Expédition</label>
+        <input id="dateExpedition" formControlName="dateExpedition" class="form-control" type="date">
+      </div>
+
+      <!-- Date de Livraison Prévue -->
+      <div class="form-group">
+        <label for="dateLivraisonPrevue">Date de Livraison Prévue</label>
+        <input id="dateLivraisonPrevue" formControlName="dateLivraisonPrevue" class="form-control" type="date">
+      </div>
+
+      <!-- Statut de la Livraison -->
+      <div class="form-group">
+        <label for="statut">Statut</label>
+        <select id="statut" formControlName="statut" class="form-control" required>
+          <option value="En cours">En cours</option>
+          <option value="Livré">Livré</option>
+          <option value="Annulé">Annulé</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div mat-dialog-actions>
+      <button type="button" mat-button (click)="cancel()">Annuler</button>
+      <button type="submit" mat-button color="primary" [disabled]="form.invalid">{{ isEditMode ? 'Enregistrer' : 'Ajouter' }}</button>
+    </div>
+  </form>
+</div>

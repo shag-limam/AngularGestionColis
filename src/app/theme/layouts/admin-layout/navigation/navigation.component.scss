@@ -1,26 +1,70 @@
-/* Ajouter scrollbar à un conteneur de navigation avec une hauteur maximale */
+// /* Ajouter scrollbar à un conteneur de navigation avec une hauteur maximale */
+// .sidebar-navigation {
+//   max-height: calc(100vh - 64px); /* Ajuste la hauteur pour l'en-tête ou d'autres éléments */
+//   overflow-y: auto;  /* Scroll vertical si nécessaire */
+//   padding-right: 10px; /* Pour éviter de cacher le contenu sous la scrollbar */
+// }
+
+// /* Scrollbar spécifique pour Webkit (Chrome, Safari) */
+// .sidebar-navigation::-webkit-scrollbar {
+//   width: 8px;  /* Largeur de la scrollbar */
+// }
+
+// .sidebar-navigation::-webkit-scrollbar-thumb {
+//   background-color: rgba(0, 0, 0, 0.3);  /* Couleur du pouce de la scrollbar */
+//   border-radius: 10px;
+// }
+
+// .sidebar-navigation::-webkit-scrollbar-thumb:hover {
+//   background-color: rgba(0, 0, 0, 0.5);  /* Couleur sur hover */
+// }
+
+// /* Scrollbar pour Firefox (CSS personnalisé avec scrollbar-width) */
+// .sidebar-navigation {
+//   scrollbar-width: thin;  /* Largeur fine */
+//   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);  /* Couleurs du pouce et de l'arrière-plan */
+// }
+
+
+/* Ajouter une scrollbar à un conteneur de navigation avec une hauteur maximale */
 .sidebar-navigation {
   max-height: calc(100vh - 64px); /* Ajuste la hauteur pour l'en-tête ou d'autres éléments */
-  overflow-y: auto;  /* Scroll vertical si nécessaire */
+  overflow-y: auto; /* Scroll vertical si nécessaire */
   padding-right: 10px; /* Pour éviter de cacher le contenu sous la scrollbar */
+  padding-left: 5px; /* Pour ajouter de l'espace à gauche du contenu */
+  background-color: #f9f9f9; /* Ajouter un fond léger pour rendre le texte plus lisible */
+  border-right: 1px solid #ddd; /* Ajoute une bordure légère sur le côté droit */
 }
 
 /* Scrollbar spécifique pour Webkit (Chrome, Safari) */
 .sidebar-navigation::-webkit-scrollbar {
-  width: 8px;  /* Largeur de la scrollbar */
+  width: 8px; /* Largeur de la scrollbar */
 }
 
 .sidebar-navigation::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);  /* Couleur du pouce de la scrollbar */
+  background-color: rgba(0, 0, 0, 0.3); /* Couleur du pouce de la scrollbar */
   border-radius: 10px;
 }
 
 .sidebar-navigation::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.5);  /* Couleur sur hover */
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur sur hover */
 }
 
 /* Scrollbar pour Firefox (CSS personnalisé avec scrollbar-width) */
 .sidebar-navigation {
-  scrollbar-width: thin;  /* Largeur fine */
-  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);  /* Couleurs du pouce et de l'arrière-plan */
+  scrollbar-width: thin; /* Largeur fine */
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1); /* Couleurs du pouce et de l'arrière-plan */
+}
+
+/* Ajout de styles pour les liens de navigation */
+.sidebar-navigation a {
+  text-decoration: none;
+  color: #333; /* Couleur du texte des liens */
+  padding: 10px 15px; /* Ajouter de l'espace à l'intérieur des liens */
+  display: block; /* Affichage en bloc pour remplir toute la largeur */
+}
+
+.sidebar-navigation a:hover {
+  background-color: #e6e6e6; /* Ajouter un effet sur hover */
+  color: #000; /* Couleur du texte sur hover */
 }

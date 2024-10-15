@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <h1>Liste des Livraisons</h1>
+  
+    <!-- Vérification si des livraisons sont présentes -->
+    <div *ngIf="livraisons.length > 0; else noData">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Statut</th>
+            <th>Nom du Livreur</th>
+            <th>Référence du Colis</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let livraison of livraisons">
+            <td>{{ livraison.id }}</td>
+            <td>{{ livraison.statut }}</td>
+            <td>{{ livraison.livreur?.fullName }}</td>
+            <td>{{ livraison.colis?.referenceSuivi }}</td>
+            <td>
+              <!-- Icônes pour les Actions -->
+              <button (click)="openLivraisonForm(livraison)" class="action-button" title="Modifier">
+                <span class="material-icons">edit</span>
+              </button>
+              <button (click)="confirmDelete(livraison.id)" class="action-button" title="Supprimer">
+                <span class="material-icons">delete</span>
+              </button>
+              <a [routerLink]="['/livraisons', livraison.id, 'view']" class="action-button" title="Détails">
+                <span class="material-icons">visibility</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Message en cas de données absentes -->
+    <ng-template #noData>
+      <p>Aucune livraison trouvée.</p>
+    </ng-template>
+  
+    <!-- Bouton pour Ajouter une Livraison -->
+    <button class="fab" (click)="openLivraisonForm()">
+      <span class="material-icons">add</span>
+    </button>
+  </div>
+  

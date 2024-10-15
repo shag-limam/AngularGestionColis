@@ -14,8 +14,7 @@ export interface ImageData {
   id: number;
   fullName: string;
   email: string;
-licence: string;
-
+  licence: string;
   phoneNumber: string;
   address: string;
   active : boolean;
@@ -24,3 +23,4 @@ licence: string;
     type: string;       // Image type, e.g., 'image/jpeg'
   };
 }
+

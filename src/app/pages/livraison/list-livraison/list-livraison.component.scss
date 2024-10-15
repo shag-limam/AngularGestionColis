@@ -1,0 +1,52 @@
+/* Stylisation des boutons d'action avec icônes sans fond */
+.action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Légère coloration lors du survol */
+    border-radius: 50%;
+  }
+  
+  .material-icons {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Floating Action Button (FAB) */
+  .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #28a745;  /* Couleur verte */
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .fab:hover {
+    background-color: #218838;  /* Légère variation de la couleur au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .fab:focus {
+    outline: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .fab .material-icons {
+    font-size: 32px;
+  }
+  

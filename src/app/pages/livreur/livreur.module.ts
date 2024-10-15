@@ -6,6 +6,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthInterceptor } from '../../services/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatDialogModule, // Import de MatDialogModule
     MatButtonModule, // Import de MatButtonModule
     ReactiveFormsModule, // Import de ReactiveFormsModule pour les formulaires réactifs
-  ],
+  ],providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   exports: [
   ]
 })

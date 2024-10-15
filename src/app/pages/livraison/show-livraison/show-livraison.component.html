@@ -1,0 +1,46 @@
+<div class="container" *ngIf="!isLoading; else loading">
+    <h1>Détails de la Livraison</h1>
+    <div *ngIf="livraison">
+        <p><strong>ID :</strong> {{ livraison.id }}</p>
+        <p><strong>Statut :</strong> {{ livraison.statut }}</p>
+        <p><strong>Date de Livraison Réelle :</strong> {{ livraison.dateLivraisonReelle | date: 'dd/MM/yyyy' }}</p>
+
+        <!-- Informations sur le Livreur -->
+        <div *ngIf="livraison.livreur">
+            <p><strong>Livreur :</strong> {{ livraison.livreur.fullName }}</p>
+            <p><strong>Email du Livreur :</strong> {{ livraison.livreur.email }}</p>
+            <p><strong>Téléphone du Livreur :</strong> {{ livraison.livreur.phoneNumber }}</p>
+        </div>
+        
+        <!-- Informations sur le Colis -->
+        <div *ngIf="livraison.colis">
+            <p><strong>Colis :</strong></p>
+            <ul>
+                <li><strong>ID :</strong> {{ livraison.colis.id }}</li>
+                <li><strong>Description :</strong> {{ livraison.colis.description }}</li>
+                <li><strong>Référence de Suivi :</strong> {{ livraison.colis.referenceSuivi }}</li>
+                <li><strong>Adresse de l'Expéditeur :</strong> {{ livraison.colis.adresseExpediteur }}</li>
+                <li><strong>Adresse du Destinataire :</strong> {{ livraison.colis.adresseDestinataire }}</li>
+            </ul>
+        </div>
+
+        <!-- Informations sur l'Itinéraire -->
+        <div *ngIf="livraison.itineraire">
+            <p><strong>Itinéraire :</strong></p>
+            <ul>
+                <li><strong>Point de Départ :</strong> {{ livraison.itineraire.departurePoint }}</li>
+                <li><strong>Point d'Arrivée :</strong> {{ livraison.itineraire.arrivalPoint }}</li>
+                <li><strong>Waypoints :</strong> {{ livraison.itineraire.waypoints.join(', ') }}</li>
+            </ul>
+        </div>
+
+        <!-- Bouton pour Retourner à la Liste des Livraisons -->
+        <button (click)="goToList()" class="btn btn-secondary">Retour à la liste des livraisons</button>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="loading-container">
+        <p>Chargement des informations de la livraison...</p>
+    </div>
+</ng-template>

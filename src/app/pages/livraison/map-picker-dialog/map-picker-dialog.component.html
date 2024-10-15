@@ -1,0 +1,17 @@
+<h2>{{ getDialogTitle() }}</h2>
+
+<!-- Ajoutez un conteneur pour la carte -->
+<div class="map-container">
+  <div id="map" class="map"></div>
+</div>
+
+<!-- Affichez les coordonnées sélectionnées -->
+<div class="coords-display" *ngIf="marker">
+  <strong>Coordonnées sélectionnées :</strong> {{ marker.getPosition().lat() }}, {{ marker.getPosition().lng() }}
+</div>
+
+<!-- Actions de la boîte de dialogue -->
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-button color="primary" (click)="confirmSelection()">Confirmer</button>
+</div>

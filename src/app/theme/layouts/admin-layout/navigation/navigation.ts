@@ -1,3 +1,4 @@
+//src\app\theme\layouts\admin-layout\navigation\navigation.ts
 export interface NavigationItem {
   id: string;
   title: string;
@@ -38,8 +39,8 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
-    id: 'clients',
-    title: 'Clients',
+    id: 'utilities',
+    title: 'Users',
     type: 'group',
     icon: 'icon-user',
     children: [
@@ -51,15 +52,7 @@ export const NavigationItems: NavigationItem[] = [
         url: '/clients',
         icon: 'user',
         breadcrumbs: false
-      }
-    ]
-  },
-  {
-    id: 'livreurs',
-    title: 'Livreurs',
-    type: 'group',
-    icon: 'icon-delivery',
-    children: [
+      },
       {
         id: 'list-livreurs',
         title: 'Livreurs',
@@ -70,12 +63,29 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       }
     ]
-  },
+  },  
+  // {
+  //   id: 'livreurs',
+  //   title: 'Livreurs',
+  //   type: 'group',
+  //   icon: 'icon-delivery',
+  //   children: [
+  //     {
+  //       id: 'list-livreurs',
+  //       title: 'Livreurs',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/livreurs',
+  //       icon: 'user',
+  //       breadcrumbs: false
+  //     }
+  //   ]
+  // },
   {
-    id: 'colis',
-    title: 'Colis',
+    id: 'logistics',
+    title: 'Logistics',
     type: 'group',
-    icon: 'icon-package',  // Remplacez par l'icône appropriée pour "Colis"
+    icon: 'icon-package',  // Replace with an appropriate icon for the group
     children: [
       {
         id: 'list-colis',
@@ -83,11 +93,20 @@ export const NavigationItems: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         url: '/colis',
-        icon: 'package',  // Remplacez par l'icône appropriée
+        icon: 'profile',  // Replace with the appropriate icon for "Colis"
+        breadcrumbs: false
+      },
+      {
+        id: 'list-livraisons',
+        title: 'Livraisons',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/livraisons',
+        icon: 'profile',  // Replace with the appropriate icon for "Livraisons"
         breadcrumbs: false
       }
     ]
-  },
+  },  
   {
     id: 'authentication',
     title: 'Authentication',

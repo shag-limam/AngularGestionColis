@@ -1,0 +1,173 @@
+// /* Conteneur pour la représentation visuelle de la route entre les points */
+// .route-container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 20px 0;
+//   position: relative;
+// }
+
+// /* Style des cercles entourant les icônes */
+// .circle {
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #f5f5f5;
+//   border: 2px solid #007bff;
+//   position: relative;
+// }
+
+// .circle mat-icon {
+//   font-size: 20px;
+// }
+
+// /* Ligne reliant les cercles */
+// .line {
+//   height: 2px;
+//   width: 100px;
+//   background-color: #007bff;
+//   margin: 0 10px;
+// }
+
+// /* Différenciation visuelle entre le point de départ et d'arrivée */
+// .departure {
+//   border-color: #28a745; /* Vert pour départ */
+// }
+
+// .arrival {
+//   border-color: #dc3545; /* Rouge pour arrivée */
+// }
+
+// /* Formulaire général */
+// .form-group {
+//   margin-bottom: 20px;
+// }
+
+// .form-control {
+//   width: 100%;
+//   padding: 8px;
+//   border-radius: 4px;
+//   border: 1px solid #ced4da;
+//   box-sizing: border-box;
+//   font-size: 16px;
+// }
+
+// /* Aligner les icônes à côté des champs */
+// .input-container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .input-icon-group {
+//   position: relative;
+// }
+
+// .icon-button {
+//   margin-left: 8px;
+// }
+
+// /* Style des actions dans la boîte de dialogue */
+// .mat-dialog-actions {
+//   display: flex;
+//   justify-content: flex-end;
+//   margin-top: 15px;
+// }
+
+// button[mat-button] {
+//   margin-left: 10px;
+// }
+
+// h2 {
+//   text-align: center;
+//   font-size: 24px;
+//   margin-bottom: 20px;
+// }
+
+// /* Ajout de la barre de défilement */
+// .mat-dialog-content {
+//   padding-bottom: 20px;
+//   max-height: 400px;
+//   overflow-y: auto;
+// }
+
+// /* General form styling for better readability and spacing */
+// form {
+//   .form-group {
+//     margin-bottom: 20px;
+//   }
+
+//   label {
+//     font-weight: 500;
+//     margin-bottom: 5px;
+//   }
+
+//   .form-control {
+//     padding: 8px;
+//     font-size: 14px;
+//     border-radius: 4px;
+//   }
+
+//   .form-text {
+//     font-size: 12px;
+//     color: #6c757d;
+//   }
+// }
+/* Conteneur principal pour l'icône et les champs de texte */
+.route-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Colonne pour les icônes reliées */
+.icon-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+}
+
+/* Style pour les icônes place et flag */
+.icon {
+  font-size: 28px;
+}
+
+/* Style pour l'icône place (départ) */
+.place-icon {
+  color: #007bff; /* Bleu pour le point de départ */
+}
+
+/* Style pour l'icône flag (arrivée) */
+.flag-icon {
+  color: #dc3545; /* Rouge pour le point d'arrivée */
+}
+
+/* Ligne verticale entre les icônes place et flag */
+.vertical-line {
+  width: 2px;
+  height: 50px; /* Ajustez cette valeur selon vos besoins */
+  background-color: #bfbfbf;
+  margin: 5px 0;
+}
+
+/* Colonne pour les champs de formulaire */
+.form-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Alignement et espacement des champs du formulaire */
+.input-icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  margin-left: 8px;
+}

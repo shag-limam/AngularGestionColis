@@ -11,6 +11,7 @@ export interface ImageData {
       message?: string;
       data: T;
     }
+    
   export interface Colis {
     id: number;
     description: string;
@@ -23,5 +24,6 @@ export interface ImageData {
     referenceSuivi: string;
     clientId: number; // Lien avec le client
     livraisonId?: number; // Lien avec la livraison si elle est déjà associée
+    isAvailable: boolean; // Indicateur de disponibilité
   }
   
