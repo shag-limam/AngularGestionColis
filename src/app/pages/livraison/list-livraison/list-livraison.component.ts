@@ -6,11 +6,13 @@ import { Livraison } from '../../Model/livraison';
 import { LivraisonFormDialogComponent } from '../livraison-form-dialog/livraison-form-dialog.component';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-list-livraison',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,],
   templateUrl: './list-livraison.component.html',
   styleUrls: ['./list-livraison.component.scss']
 })
@@ -20,7 +22,9 @@ export class ListLivraisonComponent implements OnInit {
   isLoading: boolean = false; // Indicateur de chargement
   errorMessage: string = '';  // Message d'erreur
 
-  constructor(private livraisonService: LivraisonService, public dialog: MatDialog) { }
+  constructor(
+    private livraisonService: LivraisonService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getLivraisons();
@@ -57,30 +61,59 @@ export class ListLivraisonComponent implements OnInit {
   }
 
   // Demander confirmation avant suppression
-  confirmDelete(livraisonId: number): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      width: '300px',
-      data: { message: 'Êtes-vous sûr de vouloir supprimer cette livraison ?' }
-    });
+  // confirmDelete(livraisonId: number): void {
+  //   const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+  //     width: '300px',
+  //     data: { message: 'Êtes-vous sûr de vouloir supprimer cette livraison ?' }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.deleteLivraison(livraisonId);
+    
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result === true) {
+  //       this.deleteLivraison(livraisonId);
+  //     }
+  //   });
+  // }
+  confirmDelete(livraisonId: number): void {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Cette action supprimera la livraison définitivement!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, supprimer!',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteLivraison(livraisonId); // Appeler la méthode de suppression si confirmé
       }
     });
   }
-
-  // Supprimer une livraison
+  
+  
   deleteLivraison(id: number): void {
     this.livraisonService.deleteLivraison(id).subscribe(
       () => {
-        this.getLivraisons(); // Rafraîchir la liste après suppression
+        this.getLivraisons(); // Rafraîchir la liste
+        Swal.fire({
+          title: 'Supprimé!',
+          text: 'La livraison a été supprimée avec succès.',
+          icon: 'success',
+          timer: 1250,  // L'alerte disparaît après 5 secondes (5000 ms)
+          showConfirmButton: false  // Désactiver le bouton "OK" pour rendre l'alerte auto-dismiss
+        });
       },
       (error) => {
-        console.error('Erreur lors de la suppression de la livraison :', error);
-        this.errorMessage = 'Une erreur est survenue lors de la suppression de la livraison.';
+        Swal.fire({
+          title: 'Erreur!',
+          text: 'Une erreur est survenue lors de la suppression.',
+          icon: 'error',
+          timer: 5000,  // L'alerte disparaît après 5 secondes
+          showConfirmButton: false
+        });
       }
     );
   }
+  
 }
 

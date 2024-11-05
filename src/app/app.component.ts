@@ -10,37 +10,39 @@
 //   // public props
 //   title = 'mantis-free-version';
 // }
-import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api'; // Import the MessageService
+// app.component.ts
+import { Component, OnInit } from '@angular/core';
+import { NotificationService } from './services/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [MessageService] // Provide the MessageService here
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  // Public properties
-  title = 'mantis-free-version';
+export class AppComponent implements OnInit {
+  title = 'AngularGestionColis';
+  notifications: any[] = [];
 
-  // Inject MessageService in the constructor
-  constructor(private messageService: MessageService) {}
+  constructor(private notificationService: NotificationService) {}
 
-  // Method to show a success toast
-  showSuccess() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Your operation was successful!'
+  ngOnInit(): void {
+    this.notificationService.getNotifications().subscribe(notification => {
+      this.notifications.push(notification);
+      this.showNotificationPopup(notification.message); // Show SweetAlert popup for each notification
     });
   }
 
-  // Method to show an error toast
-  showError() {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'There was an error processing your request.'
+  showNotificationPopup(message: string): void {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'info',
+      title: 'Nouvelle Notification',
+      text: message,
+      showConfirmButton: false,
+      timer: 3000,
+      toast: true
     });
   }
 }
+
