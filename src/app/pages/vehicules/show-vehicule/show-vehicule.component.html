@@ -1,0 +1,64 @@
+<section class="py-5">
+  <div class="container" *ngIf="vehicule; else loading">
+    <div class="row gx-5">
+      
+      <!-- Colonne gauche : Image principale et miniatures -->
+      <aside class="col-lg-6">
+        <!-- Image principale -->
+        <div class="border rounded-4 mb-3 d-flex justify-content-center main-image-container">
+          <img [src]="mainImage"
+               class="main-image rounded-4"
+               alt="Image principale du véhicule" />
+        </div>
+
+        <!-- Miniatures cliquables des photos -->
+        <div class="d-flex flex-wrap justify-content-center mb-3 thumbnail-container">
+          <img *ngFor="let photo of vehicule.photos; let i = index"
+               [src]="'data:' + photo.type + ';base64,' + photo.imageData"
+               class="thumbnail rounded-2"
+               (click)="changeMainImage(photo.imageData, photo.type, 'Photo ' + (i + 1))"
+               alt="Photo {{i + 1}}" />
+        </div>
+      </aside>
+
+      <!-- Colonne droite : Informations détaillées du véhicule -->
+      <main class="col-lg-6">
+        <div class="details-container ps-lg-3">
+          <h4 class="title text-dark mb-3">{{ vehicule.marque }} - {{ vehicule.modele }}</h4>
+          <p><strong>Immatriculation :</strong> {{ vehicule.immatriculation }}</p>
+            <p><strong>Statut :</strong> 
+              <span [ngClass]="{
+                'badge badge-success': vehicule.approuve,
+                'badge badge-danger': vehicule.rejected,
+                'badge-status-pending': !vehicule.approuve && !vehicule.rejected
+              }">
+                {{ vehicule.approuve ? 'Approuvé' : vehicule.rejected ? 'Rejeté' : 'En attente' }}
+              </span>
+            </p>            
+          <!-- Boutons pour afficher les PDF -->
+          <div class="pdf-buttons mt-4">
+            <button *ngIf="vehicule.assurance?.imageData" 
+                    (click)="showPdfInModal(vehicule.assurance.imageData, 'Assurance')"
+                    class="btn btn-outline-primary btn-pdf">
+              <i class="fas fa-file-pdf"></i> Voir l'Assurance
+            </button>
+            
+            <button *ngIf="vehicule.carteGrise?.imageData" 
+                    (click)="showPdfInModal(vehicule.carteGrise.imageData, 'Carte Grise')"
+                    class="btn btn-outline-primary btn-pdf">
+              <i class="fas fa-file-pdf"></i> Voir la Carte Grise
+            </button>
+          </div>
+
+          <!-- Bouton Retour -->
+          <button class="btn btn-secondary mt-4" (click)="goBack()">Retour</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Template de fallback pendant le chargement des données -->
+  <ng-template #loading>
+    <p>Chargement des détails du véhicule...</p>
+  </ng-template>
+</section>

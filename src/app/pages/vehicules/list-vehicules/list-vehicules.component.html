@@ -23,7 +23,7 @@
             <span [ngClass]="{
               'badge badge-success': vehicule.approuve,
               'badge badge-danger': vehicule.rejected,
-              'badge badge-warning': !vehicule.approuve && !vehicule.rejected
+              'badge-status-pending': !vehicule.approuve && !vehicule.rejected
             }">
               {{ vehicule.approuve ? 'Approuvé' : vehicule.rejected ? 'Rejeté' : 'En attente' }}
             </span>

@@ -6,3 +6,19 @@ img.zoomable {
 img.zoomable:hover {
     transform: scale(1.1);
 }
+
+
+.badge-pending {
+    color: black;
+}
+
+
+.badge-status-pending {
+    background-color: transparent; // Aucun fond visible
+    color: #000000; // Texte noir
+    font-size: 0.8rem; // Taille de texte réduite
+    padding: 0; // Pas d'espacement interne
+    font-weight: normal; // Optionnel : pour un texte plus discret
+  }
+  
+  

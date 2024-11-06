@@ -21,6 +21,9 @@ export interface ImageData {
   imageData: string; // Encodée en base64 pour être affichée comme image
 }
 
+
+
+
 export interface Livreur {
   id: number;
   fullName: string;

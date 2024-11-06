@@ -146,6 +146,7 @@ import { ShowLivraisonComponent } from './pages/livraison/show-livraison/show-li
 import { LivraisonFormDialogComponent } from './pages/livraison/livraison-form-dialog/livraison-form-dialog.component'; // Formulaire de livraison
 
 import { ListVehiculesComponent } from './pages/vehicules/list-vehicules/list-vehicules.component';  // Liste des véhicules
+import { ShowVehiculeComponent } from './pages/vehicules/show-vehicule/show-vehicule.component';  // Liste des véhicules
 
 import { NotificationsComponent } from './pages/notifications/notifications/notifications.component';  // Liste des véhicules
 
@@ -266,9 +267,13 @@ const routes: Routes = [
           {
             path: '',
             component: ListVehiculesComponent  // Liste tous les véhicules
+          },
+          {
+            path: ':vehiculeId/view',
+            component: ShowVehiculeComponent  // Affiche les détails d'un véhicule
           }
         ]
-      },
+      },      
       {
         path: 'notifications',
         children: [
