@@ -74,6 +74,8 @@ import { ToastrModule } from 'ngx-toastr';
 //src\app\services\auth.interceptor.ts
 import { AuthInterceptor } from '../app/services/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ClickOutsideDirective } from './click-outside.directive';
+
 
 
 

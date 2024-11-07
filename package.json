@@ -34,6 +34,7 @@
     "@types/leaflet": "^1.9.13",
     "apexcharts": "^3.49.2",
     "bootstrap": "^5.3.3",
+    "date-fns": "^4.1.0",
     "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
     "ng-apexcharts": "^1.11.0",

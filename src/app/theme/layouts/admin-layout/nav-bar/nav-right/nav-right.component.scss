@@ -1,0 +1,20 @@
+/* nav-right.component.scss */
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .list-group-item:hover {
+    background-color: #f0f2f5;
+  }
+  .bg-gray-200 {
+    color: #6c757d;
+    background-color: #f8f9fa !important;
+  }
+  .bg-light {
+    background-color: #e9ecef !important;
+  }
+  .notification-scroll-container {
+    max-height: 300px; /* Ajustez la hauteur maximale selon vos préférences */
+    overflow-y: auto;
+  }
+  
