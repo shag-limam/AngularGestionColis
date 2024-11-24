@@ -254,13 +254,17 @@
 
 <!--3-->
 
+
+
+
+
 <ul class="list-unstyled">
   <li class="pc-h-item">
     <a class="pc-head-link me-0 bg-gray-200">
       <i antIcon type="github" theme="outline"></i>
     </a>
   </li>
-<li class="dropdown pc-h-item" [ngClass]="{'show': isNotificationListOpen}" (click)="toggleNotificationList()" ngbDropdown>
+  <li class="dropdown pc-h-item" [ngClass]="{'show': isNotificationListOpen}" (click)="toggleNotificationList()" ngbDropdown>
     <a class="pc-head-link dropdown-toggle arrow-none me-0 bg-gray-200" data-bs-toggle="dropdown" ngbDropdownToggle>
       <i antIcon type="bell" theme="outline"></i>
       <span *ngIf="unreadCount > 0" class="badge bg-primary pc-h-badge">{{ unreadCount }}</span>
@@ -280,7 +284,7 @@
           <a *ngFor="let notification of notifications"
              class="list-group-item list-group-item-action"
              [ngClass]="{'bg-light': notification.read}"
-             (click)="openVehiculeDetails(notification)">
+             (click)="openNotificationDetails(notification)">
             <div class="d-flex">
               <div class="flex-shrink-0">
                 <div class="user-avatar bg-light-success">
@@ -302,7 +306,5 @@
         <a class="link-primary">Voir toutes</a>
       </div>
     </div>
-    
   </li>
 </ul>
-

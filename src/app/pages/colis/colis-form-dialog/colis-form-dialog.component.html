@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>{{ isEditMode ? 'Modifier Colis' : 'Ajouter Colis' }}</h2>
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div mat-dialog-content>
+    
     <!-- Description -->
     <div class="form-group">
       <label for="description">Description</label>
@@ -11,6 +12,9 @@
     <div class="form-group">
       <label for="poids">Poids (kg)</label>
       <input id="poids" formControlName="poids" class="form-control" type="number" required>
+      <div *ngIf="form.get('poids')?.hasError('min')" class="error-message">
+        Le poids doit être supérieur à 0.
+      </div>
     </div>
 
     <!-- Adresse Expéditeur -->
@@ -23,18 +27,24 @@
     <div class="form-group">
       <label for="adresseDestinataire">Adresse Destinataire</label>
       <input id="adresseDestinataire" formControlName="adresseDestinataire" class="form-control" type="text" required>
+      <div *ngIf="form.hasError('sameAddress')" class="error-message">
+        L'adresse du destinataire ne peut pas être identique à celle de l'expéditeur.
+      </div>
     </div>
 
     <!-- Date d'Expédition -->
     <div class="form-group">
       <label for="dateExpedition">Date d'Expédition</label>
-      <input id="dateExpedition" formControlName="dateExpedition" class="form-control" type="date" required>
+      <input id="dateExpedition" formControlName="dateExpedition" class="form-control" type="date" [min]="today" required>
+      <div *ngIf="form.hasError('invalidDateOrder')" class="error-message">
+        La date d'expédition ne peut pas être postérieure à la date de livraison.
+      </div>
     </div>
 
     <!-- Date Livraison Prévue -->
     <div class="form-group">
       <label for="dateLivraisonPrevue">Date Livraison Prévue</label>
-      <input id="dateLivraisonPrevue" formControlName="dateLivraisonPrevue" class="form-control" type="date" required>
+      <input id="dateLivraisonPrevue" formControlName="dateLivraisonPrevue" class="form-control" type="date" [min]="today" required>
     </div>
 
     <!-- Sélection du Client -->
@@ -44,17 +54,6 @@
         <option value="" disabled>Sélectionner un client</option>
         <option *ngFor="let client of clients" [value]="client.id">{{ client.fullName }}</option>
       </select>
-    </div>
-
-    <!-- Champ Image -->
-    <div class="form-group mt-3">
-      <label for="photo">Photo</label>
-      <input id="photo" type="file" (change)="onFileChange($event)" class="form-control-file">
-    </div>
-
-    <!-- Aperçu de l'Image -->
-    <div *ngIf="imagePreview" class="mt-3">
-      <img [src]="imagePreview" alt="Aperçu de l'image" width="100">
     </div>
   </div>
   

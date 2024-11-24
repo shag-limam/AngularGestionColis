@@ -49,4 +49,56 @@
   .fab .material-icons {
     font-size: 32px;
   }
-  
+/* Floating Action Button (FAB) with improvements */
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745; /* Primary green color */
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.fab:hover {
+  background-color: #218838; /* Darker green on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1); /* Slightly larger on hover */
+}
+
+.fab:focus {
+  outline: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.fab .material-icons {
+  font-size: 32px;
+}
+
+/* Tooltip styling */
+.fab-tooltip {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fab:hover .fab-tooltip {
+  opacity: 1;
+}

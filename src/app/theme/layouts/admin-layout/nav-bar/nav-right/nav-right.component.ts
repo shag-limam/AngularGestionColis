@@ -654,8 +654,188 @@
 6
 
 
-import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ViewChild } from '@angular/core';
+// import { Router, NavigationEnd } from '@angular/router';
+// import { NotificationService } from '../nav-right/notification.service';
+// import { SharedModule } from 'src/app/theme/shared/shared.module';
+// import { formatDistanceToNow } from 'date-fns';
+// import { fr } from 'date-fns/locale';
+// import { IconService } from '@ant-design/icons-angular';
+// import { ChangeDetectorRef } from '@angular/core';
+// import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+// import { Subscription, Subject } from 'rxjs';
+
+// import {
+//   BellOutline,
+//   CheckCircleOutline,
+//   GiftOutline,
+//   MessageOutline,
+//   SettingOutline,
+//   PhoneOutline,
+//   LogoutOutline,
+//   UserOutline,
+//   ProfileOutline,
+//   QuestionCircleOutline,
+//   LockOutline,
+//   CommentOutline,
+//   UnorderedListOutline,
+//   ArrowRightOutline,
+//   GithubOutline,
+//   WalletOutline
+// } from '@ant-design/icons-angular/icons';
+
+// @Component({
+//   selector: 'app-nav-right',
+//   standalone: true,
+//   imports: [SharedModule],
+//   templateUrl: './nav-right.component.html',
+//   styleUrls: ['./nav-right.component.scss']
+// })
+// export class NavRightComponent implements OnInit, OnDestroy {
+//   @Input() styleSelectorToggle!: boolean;
+//   @Output() Customize = new EventEmitter();
+//   notifications: any[] = [];
+//   unreadCount: number = 0;
+//   isNotificationListOpen: boolean = false;
+
+//   @ViewChild('notificationDropdown', { static: false }) notificationDropdown!: NgbDropdown;
+
+//   private navigationSubscription!: Subscription;
+//   private pendingNavigation = new Subject<any>();
+
+//   constructor(
+//     private router: Router,
+//     private notificationService: NotificationService,
+//     private iconService: IconService,
+//     private cdr: ChangeDetectorRef
+//   ) {
+//     this.iconService.addIcon(
+//       BellOutline,
+//       GithubOutline,
+//       CheckCircleOutline,
+//       GiftOutline,
+//       MessageOutline,
+//       SettingOutline,
+//       PhoneOutline,
+//       LogoutOutline,
+//       UserOutline,
+//       ProfileOutline,
+//       QuestionCircleOutline,
+//       LockOutline,
+//       CommentOutline,
+//       UnorderedListOutline,
+//       ArrowRightOutline,
+//       WalletOutline
+//     );
+
+//     // Écoute de l'événement de navigation pour forcer la détection des changements
+//     this.navigationSubscription = this.router.events.subscribe((event) => {
+//       if (event instanceof NavigationEnd) {
+//         this.cdr.detectChanges();
+//       }
+//     });
+
+//     // Écouteur de clic pour fermer le menu de notifications en cas de clic en dehors
+//     document.addEventListener('click', this.onDocumentClick.bind(this));
+//   }
+
+//   ngOnInit(): void {
+//     this.fetchNotifications();
+//     this.checkForNewNotifications();
+
+//     // Abonner le sujet `pendingNavigation` pour gérer la navigation différée
+//     this.pendingNavigation.subscribe((notification) => {
+//       this.navigateToNotificationDetails(notification);
+//     });
+//   }
+
+//   ngOnDestroy(): void {
+//     if (this.navigationSubscription) {
+//       this.navigationSubscription.unsubscribe();
+//     }
+//     this.pendingNavigation.unsubscribe();
+//     document.removeEventListener('click', this.onDocumentClick.bind(this));
+//   }
+
+//   // Ferme le menu si on clique en dehors
+//   private onDocumentClick(event: Event): void {
+//     const target = event.target as HTMLElement;
+//     if (!target.closest('.dropdown-menu') && this.isNotificationListOpen) {
+//       this.isNotificationListOpen = false;
+//       this.notificationDropdown.close();
+//       this.cdr.detectChanges();
+//     }
+//   }
+
+//   fetchNotifications(): void {
+//     this.notificationService.getNotificationsForAdmin().subscribe({
+//       next: (data) => {
+//         this.notifications = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+//         this.unreadCount = this.notifications.filter(notification => !notification.read).length;
+//       },
+//       error: (err) => {
+//         console.error('Erreur lors de la récupération des notifications', err);
+//       }
+//     });
+//   }
+
+//   checkForNewNotifications(): void {
+//     this.notificationService.getNewNotifications().subscribe((newNotification) => {
+//       this.notifications.unshift(newNotification);
+//       if (!newNotification.read) {
+//         this.unreadCount++;
+//       }
+//     });
+//   }
+
+//   openNotificationDetails(notification: any): void {
+//     // Fermer le dropdown s'il est ouvert
+//     if (this.notificationDropdown) {
+//       this.notificationDropdown.close();
+//       this.isNotificationListOpen = false;
+//       this.cdr.detectChanges(); // Met à jour immédiatement l'affichage
+//     }
+
+//     // Différer la navigation pour garantir la fermeture complète du menu
+//     setTimeout(() => {
+//       this.pendingNavigation.next(notification);
+//     }, 200); // Ajustez ce délai si nécessaire
+//   }
+
+//   navigateToNotificationDetails(notification: any): void {
+//     // Marquer la notification comme lue
+//     if (!notification.read) {
+//       this.notificationService.markNotificationAsRead(notification.id).subscribe(() => {
+//         notification.read = true;
+//         this.unreadCount = this.notifications.filter(n => !n.read).length;
+//       });
+//     }
+
+//     // Rediriger vers la page appropriée
+//     if (notification.vehicule && notification.vehicule.id) {
+//       this.router.navigate([`/vehicules/${notification.vehicule.id}/view`]);
+//     } else if (notification.livraison && notification.livraison.id) {
+//       this.router.navigate([`/livraisons/${notification.livraison.id}/view`]);
+//     }
+
+//     this.isNotificationListOpen = false;
+//     this.cdr.detectChanges();
+//   }
+
+//   toggleNotificationList(): void {
+//     this.isNotificationListOpen = !this.isNotificationListOpen;
+//   }
+
+//   getRelativeDate(date: string): string {
+//     return formatDistanceToNow(new Date(date), { addSuffix: true, locale: fr });
+//   }
+// }
+
+7
+
+
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { NotificationService } from '../nav-right/notification.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { formatDistanceToNow } from 'date-fns';
@@ -663,6 +843,7 @@ import { fr } from 'date-fns/locale';
 import { IconService } from '@ant-design/icons-angular';
 import { ChangeDetectorRef } from '@angular/core';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 import {
   BellOutline,
@@ -690,15 +871,16 @@ import {
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss']
 })
-export class NavRightComponent implements OnInit {
+export class NavRightComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() styleSelectorToggle!: boolean;
   @Output() Customize = new EventEmitter();
   notifications: any[] = [];
   unreadCount: number = 0;
   isNotificationListOpen: boolean = false;
 
-  // Utiliser ViewChild pour cibler le menu de notifications
-  @ViewChild('notificationDropdown', { static: false }) notificationDropdown!: NgbDropdown;
+  @ViewChild('notificationDropdown', { static: false }) notificationDropdown!: NgbDropdown | undefined;
+
+  private navigationSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -724,11 +906,27 @@ export class NavRightComponent implements OnInit {
       ArrowRightOutline,
       WalletOutline
     );
+
+    this.navigationSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   ngOnInit(): void {
     this.fetchNotifications();
     this.checkForNewNotifications();
+  }
+
+  ngAfterViewInit(): void {
+    this.notificationDropdown?.close();
+  }
+
+  ngOnDestroy(): void {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 
   fetchNotifications(): void {
@@ -752,29 +950,49 @@ export class NavRightComponent implements OnInit {
     });
   }
 
-  openVehiculeDetails(notification: any): void {
-    if (notification.vehicule && notification.vehicule.id) {
-      if (!notification.read) {
-        this.notificationService.markNotificationAsRead(notification.id).subscribe(() => {
-          notification.read = true;
-          this.unreadCount = this.notifications.filter(n => !n.read).length;
-        });
-      }
-      
-      // Navigation vers la page de détails
-      this.router.navigate([`/vehicules/${notification.vehicule.id}/view`]);
+  openNotificationDetails(notification: any): void {
+    console.log("Notification sélectionnée :", notification);
 
-      // Fermer le menu de notifications
-      this.isNotificationListOpen = false;
-      if (this.notificationDropdown && this.notificationDropdown.isOpen()) {
-        this.notificationDropdown.close(); // Close the dropdown manually
-      }
-      this.cdr.detectChanges();
+    // Ferme le menu de notifications
+    this.notificationDropdown?.close();
+    console.log("Menu de notifications fermé");
+
+    // Navigue immédiatement après la fermeture
+    this.navigateToNotificationDetails(notification);
+  }
+
+  private navigateToNotificationDetails(notification: any): void {
+    console.log("Navigation vers la notification :", notification);
+
+    if (!notification.read) {
+      this.notificationService.markNotificationAsRead(notification.id).subscribe(() => {
+        notification.read = true;
+        this.unreadCount = this.notifications.filter(n => !n.read).length;
+        console.log("Notification marquée comme lue");
+      });
+    }
+
+    if (notification.vehicule && notification.vehicule.id) {
+      this.router.navigate([`/vehicules/${notification.vehicule.id}/view`]).then(() => {
+        console.log("Navigation vers le véhicule réussie");
+        window.location.reload(); // Recharger la page
+      }).catch((err) => console.error("Erreur lors de la navigation vers le véhicule", err));
+    } else if (notification.livraison && notification.livraison.id) {
+      this.router.navigate([`/livraisons/${notification.livraison.id}/view`]).then(() => {
+        console.log("Navigation vers la livraison réussie");
+        window.location.reload(); // Recharger la page
+      }).catch((err) => console.error("Erreur lors de la navigation vers la livraison", err));
+    }
+     else {
+      console.warn("Aucune destination valide pour cette notification");
     }
   }
 
   toggleNotificationList(): void {
-    this.isNotificationListOpen = !this.isNotificationListOpen;
+    if (this.notificationDropdown) {
+      this.isNotificationListOpen = !this.isNotificationListOpen;
+      this.isNotificationListOpen ? this.notificationDropdown.open() : this.notificationDropdown.close();
+    }
   }
 
   getRelativeDate(date: string): string {

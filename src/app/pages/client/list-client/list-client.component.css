@@ -66,9 +66,9 @@ input:checked + .slider:before {
 /* Floating Action Button (FAB) */
 .fab {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #28a745;  /* Couleur verte */
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745; /* Primary green color */
   color: white;
   border: none;
   width: 60px;
@@ -79,7 +79,8 @@ input:checked + .slider:before {
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  z-index: 1000; /* Ensures it stays above other elements */
 }
 
 .fab:hover {
