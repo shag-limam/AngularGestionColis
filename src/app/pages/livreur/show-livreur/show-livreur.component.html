@@ -1,24 +1,112 @@
-<div class="container" *ngIf="!isLoading; else loading">
-  <h1>Détails du Livreur</h1>
-  <div *ngIf="livreur">
-    <p><strong>ID :</strong> {{ livreur.id }}</p>
-    <p><strong>Nom complet :</strong> {{ livreur.fullName }}</p>
-    <p><strong>Email :</strong> {{ livreur.email }}</p>
-    <p><strong>Numéro de licence :</strong> {{ livreur.licence }}</p>
-    <p><strong>Téléphone :</strong> {{ livreur.phoneNumber }}</p>
-    <p><strong>Adresse :</strong> {{ livreur.address }}</p>
-    <p><strong>Statut :</strong> {{ livreur.active ? 'Actif' : 'Inactif' }}</p>
-    <div *ngIf="livreur.imageData">
-      <p><strong>Image :</strong></p>
-      <img [src]="'data:' + livreur.imageData.type + ';base64,' + livreur.imageData.imageData" alt="Image du Livreur" width="150">
+<div class="container-fluid p-4">
+  <div class="card shadow-sm" *ngIf="!isLoading; else loading">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h2 class="mb-0">Détails du Livreur</h2>
+      <button (click)="goToList()" class="btn btn-outline-primary">
+        <i class="material-icons me-2">arrow_back</i>
+        Retour à la liste
+      </button>
     </div>
-    <!-- Bouton pour Retourner à la Liste des Livreurs -->
-    <button (click)="goToList()" class="btn btn-secondary">Retour à la liste des livreurs</button>
+
+    <div class="card-body" *ngIf="livreur">
+      <div class="row">
+        <!-- Photo de profil et informations principales -->
+        <div class="col-md-4 text-center mb-4">
+          <div class="profile-image-container mb-3">
+            <img *ngIf="livreur.imageData" 
+                 [src]="'data:' + livreur.imageData.type + ';base64,' + livreur.imageData.imageData" 
+                 alt="Photo de profil"
+                 class="profile-image">
+            <div *ngIf="!livreur.imageData" class="profile-placeholder">
+              <i class="material-icons">person</i>
+            </div>
+          </div>
+          <h3 class="mb-2">{{ livreur.fullName }}</h3>
+          <span [class]="'status-badge ' + (livreur.active ? 'active' : 'inactive')">
+            {{ livreur.active ? 'Actif' : 'Inactif' }}
+          </span>
+        </div>
+
+        <!-- Informations détaillées -->
+        <div class="col-md-8">
+          <div class="row g-4">
+            <!-- ID -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="material-icons">badge</i>
+                </div>
+                <div class="info-content">
+                  <label>ID Livreur</label>
+                  <p class="mb-0">#{{ livreur.id }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="material-icons">email</i>
+                </div>
+                <div class="info-content">
+                  <label>Email</label>
+                  <p class="mb-0">{{ livreur.email }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Licence -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="material-icons">card_membership</i>
+                </div>
+                <div class="info-content">
+                  <label>Numéro de licence</label>
+                  <p class="mb-0">{{ livreur.licence }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="material-icons">phone</i>
+                </div>
+                <div class="info-content">
+                  <label>Téléphone</label>
+                  <p class="mb-0">{{ livreur.phoneNumber }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Adresse -->
+            <div class="col-12">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="material-icons">location_on</i>
+                </div>
+                <div class="info-content">
+                  <label>Adresse</label>
+                  <p class="mb-0">{{ livreur.address }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- Template de chargement -->
 <ng-template #loading>
   <div class="loading-container">
-    <p>Chargement des informations du livreur...</p>
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+    <p class="mt-3">Chargement des informations du livreur...</p>
   </div>
 </ng-template>

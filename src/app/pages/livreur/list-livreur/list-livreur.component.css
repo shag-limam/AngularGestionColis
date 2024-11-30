@@ -63,7 +63,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-
 /* Floating Action Button (FAB) */
 .fab {
   position: fixed;
@@ -109,4 +108,101 @@ input:checked + .slider:before {
 
 .fab .material-icons {
   font-size: 32px;
+}
+
+/* Style pour la carte */
+.card {
+  border: none;
+  border-radius: 8px;
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la barre de recherche */
+.search-box {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.search-input {
+  padding-left: 40px;
+  border-radius: 20px;
+}
+
+/* Style pour le tableau */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 600;
+  color: #495057;
+  border-top: none;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* Style pour les boutons d'action */
+.btn-group .btn {
+  padding: 0.25rem 0.5rem;
+  margin: 0 2px;
+}
+
+.btn-group .material-icons {
+  font-size: 20px;
+}
+
+/* Style pour le badge ID */
+.badge {
+  padding: 0.5em 0.8em;
+  font-weight: 500;
+}
+
+/* Style pour le switch */
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+/* Style pour les images */
+.rounded-circle {
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le message "aucune donnée" */
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btn-group .btn {
+    margin: 2px 0;
+  }
+  
+  .search-box {
+    margin-bottom: 1rem;
+  }
 }

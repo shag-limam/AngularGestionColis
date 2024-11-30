@@ -1,61 +1,114 @@
-<div class="container mt-4">
-  <h1>Liste des Livreurs</h1>
+<div class="container-fluid p-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h2 class="mb-0">Liste des Livreurs</h2>
+      <button class="btn btn-primary d-flex align-items-center" (click)="openLivreurForm()">
+        <span class="material-icons me-2">add</span>
+        Nouveau Livreur
+      </button>
+    </div>
+    
+    <div class="card-body">
+      <!-- Barre de recherche -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="search-box">
+            <span class="material-icons search-icon">search</span>
+            <input type="text" class="form-control search-input" placeholder="Rechercher un livreur..." 
+                   [(ngModel)]="searchTerm" (input)="filterLivreurs()">
+          </div>
+        </div>
+      </div>
 
-  <!-- Vérification si des livreurs sont présents -->
-  <div *ngIf="livreurs.length > 0; else noData">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom complet</th>
-          <th>Licence</th>
-          <th>Téléphone</th>
-          <th>Image</th>
-          <th>Statut</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let livreur of livreurs">
-          <td>{{ livreur.id }}</td>
-          <td>{{ livreur.fullName }}</td>
-          <td>{{ livreur.licence }}</td>
-          <td>{{ livreur.phoneNumber }}</td>
-          <td>
-            <!-- Affichage de l'image si elle est disponible -->
-            <img *ngIf="livreur.imageData?.imageData" [src]="'data:' + livreur.imageData.type + ';base64,' + livreur.imageData.imageData" alt="Image Livreur" width="50" height="50">
-          </td>
-          <td>
-            <!-- Toggle Switch pour Actif/Inactif -->
-            <label class="switch">
-              <input type="checkbox" [checked]="livreur.active" (change)="toggleLivreurStatus(livreur)">
-              <span class="slider round"></span>
-            </label>
-          </td>
-          <td>
-            <!-- Icônes sans fond pour les Actions -->
-            <button (click)="openLivreurForm(livreur)" class="action-button" title="Modifier">
-              <span class="material-icons">edit</span>
-            </button>
-            <button (click)="confirmDelete(livreur.id)" class="action-button" title="Supprimer">
-              <span class="material-icons">delete</span>
-            </button>
-            <a [routerLink]="['/livreurs', livreur.id, 'view']" class="action-button" title="Détails">
-              <span class="material-icons">visibility</span>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- Liste des livreurs -->
+      <div class="table-responsive" *ngIf="filteredLivreurs.length > 0; else noData">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nom complet</th>
+              <th>Licence</th>
+              <th>Téléphone</th>
+              <th>Image</th>
+              <th>Statut</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let livreur of displayedLivreurs" class="align-middle">
+              <td><span class="badge bg-light text-dark">#{{ livreur.id }}</span></td>
+              <td>
+                <div class="d-flex align-items-center">
+                  
+                  <div>{{ livreur.fullName }}</div>
+                </div>
+              </td>
+              <td>{{ livreur.licence }}</td>
+              <td>{{ livreur.phoneNumber }}</td>
+              <td>
+                <img *ngIf="livreur.imageData?.imageData" 
+                       [src]="'data:' + livreur.imageData.type + ';base64,' + livreur.imageData.imageData" 
+                       class="rounded-circle me-2" 
+                       width="40" height="40" 
+                       alt="Photo">
+              </td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" 
+                         [checked]="livreur.active" 
+                         (change)="toggleLivreurStatus(livreur)">
+                  <label class="form-check-label">
+                    {{ livreur.active ? 'Actif' : 'Inactif' }}
+                  </label>
+                </div>
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button (click)="openLivreurForm(livreur)" 
+                          class="btn btn-outline-primary btn-sm" 
+                          title="Modifier">
+                    <span class="material-icons">edit</span>
+                  </button>
+                  <a [routerLink]="['/livreurs', livreur.id, 'view']" 
+                     class="btn btn-outline-info btn-sm" 
+                     title="Détails">
+                    <span class="material-icons">visibility</span>
+                  </a>
+                  <button (click)="confirmDelete(livreur.id)" 
+                          class="btn btn-outline-danger btn-sm" 
+                          title="Supprimer">
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end mt-3">
+          <mat-paginator
+            [length]="filteredLivreurs.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            [pageIndex]="pageIndex"
+            (page)="handlePageEvent($event)"
+            aria-label="Sélectionner la page">
+          </mat-paginator>
+        </div>
+      </div>
+
+      <!-- Message si aucune donnée -->
+      <ng-template #noData>
+        <div class="text-center py-5">
+          <span class="material-icons text-muted" style="font-size: 48px;">person_off</span>
+          <p class="h5 text-muted mt-2">Aucun livreur trouvé</p>
+          <button class="btn btn-primary mt-3" (click)="openLivreurForm()">
+            <span class="material-icons me-2">add</span>
+            Ajouter un livreur
+          </button>
+        </div>
+      </ng-template>
+    </div>
   </div>
-
-  <!-- Message en cas de données absentes -->
-  <ng-template #noData>
-    <p>Aucun livreur trouvé.</p>
-  </ng-template>
-
-  <!-- Nouveau Bouton pour Ajouter un Livreur (Floating Action Button) -->
-  <button class="fab" (click)="openLivreurForm()">
-    <span class="material-icons">add</span>
-  </button>
 </div>

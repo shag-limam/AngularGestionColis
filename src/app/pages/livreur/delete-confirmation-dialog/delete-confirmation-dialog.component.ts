@@ -3,14 +3,16 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-delete-confirmation-dialog',
   standalone: true,
   imports: [
     CommonModule,
-    MatDialogModule, // Import nécessaire pour <mat-dialog-content> et <mat-dialog-actions>
-    MatButtonModule  // Import nécessaire pour les boutons dans la boîte de dialogue
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './delete-confirmation-dialog.component.html',
   styleUrls: ['./delete-confirmation-dialog.component.css']
