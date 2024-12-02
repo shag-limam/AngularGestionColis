@@ -292,6 +292,14 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/google-maps@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.npmjs.org/@angular/google-maps/-/google-maps-19.0.1.tgz"
+  integrity sha512-qIUQx7V+O7GlV6y+TEKXSJ8Hm9qLyhtf1LZfBDl3xFEV4W1bzHFpUg2VH8m/tSx0d79sNugfc6/Jyd+zFMtZuw==
+  dependencies:
+    "@types/google.maps" "^3.54.10"
+    tslib "^2.3.0"
+
 "@angular/localize@^18.0.5":
   version "18.2.0"
   resolved "https://registry.npmjs.org/@angular/localize/-/localize-18.2.0.tgz"
@@ -1961,7 +1969,7 @@
   resolved "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.14.tgz"
   integrity sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==
 
-"@types/google.maps@^3.58.1":
+"@types/google.maps@^3.54.10", "@types/google.maps@^3.58.1":
   version "3.58.1"
   resolved "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.58.1.tgz"
   integrity sha512-X9QTSvGJ0nCfMzYOnaVs/k6/4L+7F5uCS+4iUmkLEls6J9S/Phv+m/i3mDeyc49ZBgwab3EFO1HEoBY7k98EGQ==
@@ -1988,10 +1996,10 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-"@types/leaflet@^1.9.13":
-  version "1.9.13"
-  resolved "https://registry.npmjs.org/@types/leaflet/-/leaflet-1.9.13.tgz"
-  integrity sha512-wwLL4VKKwYlLmhMQRc/8HT5/8HgkzZyETG0hG3nbsSiHKSdxBWZnHqEkRIOOtpyUks3gbc81dk9WgQMC6bicDw==
+"@types/leaflet@^1.9.14":
+  version "1.9.14"
+  resolved "https://registry.npmjs.org/@types/leaflet/-/leaflet-1.9.14.tgz"
+  integrity sha512-sx2q6MDJaajwhKeVgPSvqXd8rhNJSTA3tMidQGduZn9S6WBYxDkCpSpV5xXEmSg7Cgdk/5vJGhVF1kMYLzauBg==
   dependencies:
     "@types/geojson" "*"
 
