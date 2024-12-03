@@ -87,7 +87,8 @@ export class ListLivraisonComponent implements OnInit {
 
     const dialogRef = this.dialog.open(LivraisonFormDialogComponent, {
 
-      width: '400px',
+      width: '1000px', // Increased from 400px
+      maxWidth: '100vw', // Added to ensure it doesn't overflow on smaller screens
 
       data: livraison ? livraison : null
 

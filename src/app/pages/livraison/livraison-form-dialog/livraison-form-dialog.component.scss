@@ -1,247 +1,208 @@
-// // /* Conteneur pour la représentation visuelle de la route entre les points */
-// // .route-container {
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: center;
-// //   margin: 20px 0;
-// //   position: relative;
-// // }
+:host {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+}
 
-// // /* Style des cercles entourant les icônes */
-// // .circle {
-// //   width: 40px;
-// //   height: 40px;
-// //   border-radius: 50%;
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: center;
-// //   background-color: #f5f5f5;
-// //   border: 2px solid #007bff;
-// //   position: relative;
-// // }
+h2[mat-dialog-title] {
+  margin: 0;
+  padding: 20px 24px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+}
 
-// // .circle mat-icon {
-// //   font-size: 20px;
-// // }
+.mat-dialog-content {
+  padding: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
 
-// // /* Ligne reliant les cercles */
-// // .line {
-// //   height: 2px;
-// //   width: 100px;
-// //   background-color: #007bff;
-// //   margin: 0 10px;
-// // }
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f5f5f5;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #ccc;
+    }
+  }
+}
 
-// // /* Différenciation visuelle entre le point de départ et d'arrivée */
-// // .departure {
-// //   border-color: #28a745; /* Vert pour départ */
-// // }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
 
-// // .arrival {
-// //   border-color: #dc3545; /* Rouge pour arrivée */
-// // }
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-// // /* Formulaire général */
-// // .form-group {
-// //   margin-bottom: 20px;
-// // }
+  &.route-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
 
-// // .form-control {
-// //   width: 100%;
-// //   padding: 8px;
-// //   border-radius: 4px;
-// //   border: 1px solid #ced4da;
-// //   box-sizing: border-box;
-// //   font-size: 16px;
-// // }
+    h3 {
+      margin: 0 0 20px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+    }
+  }
+}
 
-// // /* Aligner les icônes à côté des champs */
-// // .input-container {
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: space-between;
-// // }
+.form-group {
+  margin-bottom: 4px;
 
-// // .input-icon-group {
-// //   position: relative;
-// // }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+  }
 
-// // .icon-button {
-// //   margin-left: 8px;
-// // }
+  .form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 0.15s ease;
 
-// // /* Style des actions dans la boîte de dialogue */
-// // .mat-dialog-actions {
-// //   display: flex;
-// //   justify-content: flex-end;
-// //   margin-top: 15px;
-// // }
+    &:focus {
+      outline: none;
+      border-color: #2196f3;
+    }
 
-// // button[mat-button] {
-// //   margin-left: 10px;
-// // }
+    &:disabled, &[readonly] {
+      background-color: #f8f9fa;
+      cursor: not-allowed;
+    }
 
-// // h2 {
-// //   text-align: center;
-// //   font-size: 24px;
-// //   margin-bottom: 20px;
-// // }
+    &::placeholder {
+      color: #999;
+    }
+  }
 
-// // /* Ajout de la barre de défilement */
-// // .mat-dialog-content {
-// //   padding-bottom: 20px;
-// //   max-height: 400px;
-// //   overflow-y: auto;
-// // }
+  select.form-control {
+    appearance: none;
+    padding-right: 32px;
+    background: #fff url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 8px center;
+    background-size: 16px;
+  }
+}
 
-// // /* General form styling for better readability and spacing */
-// // form {
-// //   .form-group {
-// //     margin-bottom: 20px;
-// //   }
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
-// //   label {
-// //     font-weight: 500;
-// //     margin-bottom: 5px;
-// //   }
-
-// //   .form-control {
-// //     padding: 8px;
-// //     font-size: 14px;
-// //     border-radius: 4px;
-// //   }
-
-// //   .form-text {
-// //     font-size: 12px;
-// //     color: #6c757d;
-// //   }
-// // }
-// /* Conteneur principal pour l'icône et les champs de texte */
-// .route-container {
-//   display: flex;
-//   align-items: flex-start;
-//   justify-content: flex-start;
-//   margin-bottom: 20px;
-// }
-
-// /* Colonne pour les icônes reliées */
-// .icon-column {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   margin-right: 15px;
-// }
-
-// /* Style pour les icônes place et flag */
-// .icon {
-//   font-size: 28px;
-// }
-
-// /* Style pour l'icône place (départ) */
-// .place-icon {
-//   color: #007bff; /* Bleu pour le point de départ */
-// }
-
-// /* Style pour l'icône flag (arrivée) */
-// .flag-icon {
-//   color: #dc3545; /* Rouge pour le point d'arrivée */
-// }
-
-// /* Ligne verticale entre les icônes place et flag */
-// .vertical-line {
-//   width: 2px;
-//   height: 50px; /* Ajustez cette valeur selon vos besoins */
-//   background-color: #bfbfbf;
-//   margin: 5px 0;
-// }
-
-// /* Colonne pour les champs de formulaire */
-// .form-column {
-//   display: flex;
-//   flex-direction: column;
-//   flex-grow: 1;
-// }
-
-// /* Alignement et espacement des champs du formulaire */
-// .input-icon-group {
-//   display: flex;
-//   align-items: center;
-// }
-
-// .icon-button {
-//   margin-left: 8px;
-// }
 .route-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
 }
 
 .icon-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 15px;
 }
 
 .icon {
-  font-size: 28px;
-}
-
-.place-icon {
-  color: #007bff;
-}
-
-.flag-icon {
-  color: #dc3545;
+  color: #2196f3;
+  font-size: 20px;
 }
 
 .vertical-line {
   width: 2px;
-  height: 50px;
-  background-color: #bfbfbf;
-  margin: 5px 0;
+  height: 32px;
+  background-color: #ddd;
+  margin: 8px 0;
 }
 
-.form-column {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.form-fields {
+  flex: 1;
 }
 
-.input-icon-group {
+.input-with-icon {
   display: flex;
   align-items: center;
+  gap: 8px;
+
+  .form-control {
+    flex: 1;
+  }
+
+  .icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #2196f3;
+    cursor: pointer;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: #1976d2;
+    }
+
+    mat-icon {
+      font-size: 20px;
+    }
+  }
 }
 
-.icon-button {
-  margin-left: 8px;
-  color: #007bff;
+.mat-dialog-actions {
+  padding: 16px 24px;
+  margin: 0;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    min-width: 100px;
+
+    &[color="primary"] {
+      background: #2196f3;
+
+      &:hover {
+        background: #1976d2;
+      }
+    }
+
+    mat-icon {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+  }
 }
 
-/* Ajout de padding plus grand pour les labels */
-label {
-  padding-left: 15px; /* Augmentation du padding à gauche */
-  font-weight: bold; /* Pour une meilleure lisibilité */
-}
-
-.form-control {
-  border-radius: 4px;
-  padding: 10px;
-  border: 1px solid #ced4da;
-  transition: border-color 0.2s;
-}
-
-.form-control:focus {
-  border-color: #007bff;
-}
-
-button[mat-button] {
-  margin-top: 15px;
-  border-radius: 5px;
+::ng-deep {
+  .mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
 }
